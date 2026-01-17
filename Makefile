@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: agomoham <agomoham@student.42.fr>          +#+  +:+       +#+         #
+#    By: amoufakk <amoufakk@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/11/11 20:27:09 by agomoham          #+#    #+#              #
-#    Updated: 2025/11/12 00:27:46 by agomoham         ###   ########.fr        #
+#    Created: 2026/01/17 01:12:10 by amoufakk          #+#    #+#              #
+#    Updated: 2026/01/17 01:12:12 by amoufakk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
