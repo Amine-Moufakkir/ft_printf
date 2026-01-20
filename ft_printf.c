@@ -6,7 +6,7 @@
 /*   By: amoufakk <amoufakk@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 01:05:58 by amoufakk          #+#    #+#             */
-/*   Updated: 2026/01/20 14:52:52 by amoufakk         ###   ########.fr       */
+/*   Updated: 2026/01/20 22:49:09 by amoufakk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,10 @@ int	ft_type_print(va_list args_list, const char c)
 	else if (c == '%')
 		nbr_printed += ft_putchar('%');
 	else
+	{
+		nbr_printed += write(1 , "%", 1);
 		nbr_printed += ft_putchar(c);
+	}
 	return (nbr_printed);
 }
 
