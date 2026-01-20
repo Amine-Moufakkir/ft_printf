@@ -1,0 +1,11 @@
+# C build artifacts
+*.o
+*.a
+*.out
+
+# VS Code
+.vscode/
+
+# Other
+*.swp
+.DS_Store
