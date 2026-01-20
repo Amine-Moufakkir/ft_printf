@@ -73,7 +73,6 @@ Strictly speaking, the project doesn't use complex data structures. It primarily
 - **Base Conversion**: Iterative or recursive logic to convert integers to different bases (decimal, hexadecimal) without using large memory structures.
 
 ## Resources
-- [42 Project Overview](https://42.fr/)
 - [Variadic Functions in C - GeeksforGeeks](https://www.geeksforgeeks.org/variadic-functions-in-c/)
 - [`printf` Function Documentation](https://en.cppreference.com/w/c/io/fprintf)
 
