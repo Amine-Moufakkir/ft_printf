@@ -2,7 +2,7 @@
 *.o
 *.a
 *.out
-
+main.c
 # VS Code
 .vscode/
 

@@ -6,14 +6,14 @@
 /*   By: amoufakk <amoufakk@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 01:07:21 by amoufakk          #+#    #+#             */
-/*   Updated: 2026/01/17 01:07:23 by amoufakk         ###   ########.fr       */
+/*   Updated: 2026/01/21 20:13:18 by amoufakk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_putchar(int character)
+int	ft_putchar(int c)
 {
-	write(1, &character, 1);
+	write(1, &c, 1);
 	return (1);
 }

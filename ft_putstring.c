@@ -6,25 +6,25 @@
 /*   By: amoufakk <amoufakk@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 01:07:53 by amoufakk          #+#    #+#             */
-/*   Updated: 2026/01/17 01:07:55 by amoufakk         ###   ########.fr       */
+/*   Updated: 2026/01/21 20:13:21 by amoufakk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_putstring(char *string)
+int	ft_putstring(char *s)
 {
-	int	index;
+	int	i;
 
-	index = 0;
-	if (!string)
+	i = 0;
+	if (!s)
 	{
 		return (write(1, "(null)", 6));
 	}
-	while (string[index])
+	while (s[i])
 	{
-		ft_putchar(string[index]);
-		index++;
+		ft_putchar(s[i]);
+		i++;
 	}
-	return (index);
+	return (i);
 }

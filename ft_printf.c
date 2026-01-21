@@ -5,62 +5,62 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: amoufakk <amoufakk@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/17 01:05:58 by amoufakk          #+#    #+#             */
-/*   Updated: 2026/01/20 22:49:09 by amoufakk         ###   ########.fr       */
+/*   Created: 2026/01/21 22:23:22 by amoufakk          #+#    #+#             */
+/*   Updated: 2026/01/21 22:23:24 by amoufakk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_type_print(va_list args_list, const char c)
+int	ft_parse_format(va_list args, const char c)
 {
-	int	nbr_printed;
+	int	count;
 
-	nbr_printed = 0;
+	count = 0;
 	if (c == 'c')
-		nbr_printed += ft_putchar(va_arg(args_list, int));
+		count += ft_putchar(va_arg(args, int));
 	else if (c == 's')
-		nbr_printed += ft_putstring(va_arg(args_list, char *));
+		count += ft_putstring(va_arg(args, char *));
 	else if (c == 'p')
-		nbr_printed += ft_putpointer(va_arg(args_list, unsigned long));
+		count += ft_putpointer(va_arg(args, unsigned long));
 	else if (c == 'd' || c == 'i')
-		nbr_printed += ft_putnumber(va_arg(args_list, int));
+		count += ft_putnumber(va_arg(args, int));
 	else if (c == 'u')
-		nbr_printed += ft_putunsignedint(va_arg(args_list, unsigned int));
+		count += ft_putunsignedint(va_arg(args, unsigned int));
 	else if (c == 'x' || c == 'X')
-		nbr_printed += ft_puthexanumber(va_arg(args_list, unsigned int), c);
+		count += ft_puthexanumber(va_arg(args, unsigned int), c);
 	else if (c == '%')
-		nbr_printed += ft_putchar('%');
+		count += ft_putchar('%');
 	else
 	{
-		nbr_printed += write(1 , "%", 1);
-		nbr_printed += ft_putchar(c);
+		count += write(1, "%", 1);
+		count += ft_putchar(c);
 	}
-	return (nbr_printed);
+	return (count);
 }
 
-int	ft_printf(const char *mandatory_arg, ...)
+int	ft_printf(const char *str, ...)
 {
 	int		i;
-	va_list	args_list;
-	int		nbr_printed;
+	va_list	args;
+	int		count;
 
 	i = 0;
-	nbr_printed = 0;
-	va_start(args_list, mandatory_arg);
-	if (write(1, "", 0) == -1 || !mandatory_arg)
+	count = 0;
+	va_start(args, str);
+	if (write(1, "", 0) == -1 || !str)
 		return (-1);
-	while (mandatory_arg[i])
+	while (str[i])
 	{
-		if (mandatory_arg[i] == '%' && mandatory_arg[i + 1])
+		if (str[i] == '%' && str[i + 1])
 		{
-			nbr_printed += ft_type_print(args_list, mandatory_arg[i + 1]);
+			count += ft_parse_format(args, str[i + 1]);
 			i++;
 		}
-		else if (mandatory_arg[i] != '%')
-			nbr_printed += ft_putchar(mandatory_arg[i]);
+		else if (str[i] != '%')
+			count += ft_putchar(str[i]);
 		i++;
 	}
-	va_end(args_list);
-	return (nbr_printed);
+	va_end(args);
+	return (count);
 }
