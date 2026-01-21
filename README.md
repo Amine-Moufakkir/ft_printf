@@ -62,7 +62,7 @@ cc main.c -L. -lftprintf -o my_program
 ## Technical Details
 
 ### Algorithm
-The core of `ft_printf` relies on a loop that iterates through the format string. When a `%` character is encountered, the function identifies the subsequent character as a format specifier. It then uses a dispatcher function (`ft_type_print`) to call the appropriate specialized printing function for that type.
+The core of `ft_printf` relies on a loop that iterates through the format string. When a `%` character is encountered, the function identifies the subsequent character as a format specifier. It then uses a dispatcher function (`ft_parse_format`) to call the appropriate specialized printing function for that type.
 
 Variadic arguments are handled using the `va_list`, `va_start`, `va_arg`, and `va_end` macros from `<stdarg.h>`. This allows the function to accept an arbitrary number of arguments corresponding to the format specifiers in the string.
 
@@ -80,5 +80,3 @@ Strictly speaking, the project doesn't use complex data structures. It primarily
 AI was used in this project for the following tasks:
 - **Refactoring and Optimization**: Assistance in streamlining the dispatcher logic and improving code readability.
 - **Documentation**: Generation of this `README.md` and technical explanations.
-- **Header Updates**: Automating the update of license headers across multiple files.
-- **Verification**: Identifying potential edge cases in format specifier handling.
