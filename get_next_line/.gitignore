@@ -1,0 +1,17 @@
+# Compiled binaries and object files
+*.o
+*.a
+*.out
+a.out
+
+# Debugging and profiling
+*.dSYM/
+valgrind-out.txt
+.vscode/
+
+# OS specific files
+.DS_Store
+Thumbs.db
+
+# Test files (if you keep them in the same directory)
+text.txt

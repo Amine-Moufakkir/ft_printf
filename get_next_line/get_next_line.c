@@ -6,7 +6,7 @@
 /*   By: amoufakk <amoufakk@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 00:43:41 by amoufakk          #+#    #+#             */
-/*   Updated: 2026/01/25 12:48:03 by amoufakk         ###   ########.fr       */
+/*   Updated: 2026/01/27 01:12:58 by amoufakk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,23 @@ static char	*update_storage(char *stash)
 	char	*nl;
 	size_t	len;
 
-	if (!stash)
-		return (NULL);
 	nl = ft_strchr(stash, '\n');
 	if (!nl || !*(nl + 1))
-		return (free(stash), NULL);
+	{
+		free(stash);
+		return (NULL);
+	}
 	len = ft_strlen(nl + 1);
 	rem = malloc(len + 1);
 	if (!rem)
-		return (free(stash), NULL);
+	{
+		free(stash);
+		return (NULL);
+	}
 	ft_memcpy(rem, nl + 1, len);
 	rem[len] = '\0';
-	return (free(stash), rem);
+	free(stash);
+	return (rem);
 }
 
 static char	*get_current_line(char *stash)
@@ -61,24 +66,26 @@ static char	*fill_stash(int fd, char *stash)
 	char	*tmp;
 	ssize_t	count;
 
-	buff = malloc(BUFFER_SIZE + 1);
+	buff = malloc((size_t)BUFFER_SIZE + 1);
 	if (!buff)
 		return (NULL);
-	while (!ft_strchr(stash, '\n'))
+	count = 1;
+	while (!ft_strchr(stash, '\n') && count > 0)
 	{
 		count = read(fd, buff, BUFFER_SIZE);
-		if (count < 0)
-			return (free(buff), free(stash), NULL);
-		if (count == 0)
-			break ;
+		if (count == -1)
+		{
+			free(buff);
+			free(stash);
+			return (NULL);
+		}
 		buff[count] = '\0';
 		tmp = stash;
-		stash = ft_strjoin(stash, buff);
+		stash = ft_strjoin(tmp, buff);
 		free(tmp);
-		if (!stash)
-			return (free(buff), NULL);
 	}
-	return (free(buff), stash);
+	free(buff);
+	return (stash);
 }
 
 char	*get_next_line(int fd)
