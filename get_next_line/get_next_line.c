@@ -68,7 +68,7 @@ static char	*fill_stash(int fd, char *stash)
 
 	buff = malloc((size_t)BUFFER_SIZE + 1);
 	if (!buff)
-		return (NULL);
+		return (free(stash), NULL);
 	count = 1;
 	while (!ft_strchr(stash, '\n') && count > 0)
 	{
@@ -83,9 +83,10 @@ static char	*fill_stash(int fd, char *stash)
 		tmp = stash;
 		stash = ft_strjoin(tmp, buff);
 		free(tmp);
+		if (!stash)
+			return (free(buff), NULL);
 	}
-	free(buff);
-	return (stash);
+	return (free(buff), stash);
 }
 
 char	*get_next_line(int fd)
